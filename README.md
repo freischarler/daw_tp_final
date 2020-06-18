@@ -12,3 +12,5 @@ command_to_run
 Para contribuir realizar un pull request con las sugerencias.
 # Licencia
 GPL
+
+# fix bugs
