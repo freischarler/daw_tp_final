@@ -5,6 +5,8 @@ interface DeviceInt{
     state:string;
     type:number;
 }
+
+
 class ViewMainPage
 {
     myf:MyFramework;
@@ -13,6 +15,9 @@ class ViewMainPage
     {
         this.myf = myf;    
     }
+
+
+
 
     showDevices(list:DeviceInt[]):void
     {
@@ -71,6 +76,7 @@ class ViewMainPage
         return el.checked;
     }
 }
+
 class Main implements GETResponseListener, EventListenerObject, POSTResponseListener
 { 
     myf:MyFramework;
@@ -78,11 +84,24 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
 
     handleEvent(evt:Event):void
     {
-        let sw: HTMLElement = this.myf.getElementByEvent(evt);
-        console.log("click en device:"+sw.id);
-
-        let data:object = {"id":sw.id,"state":this.view.getSwitchStateById(sw.id)};
-        this.myf.requestPOST("devices",data,this);
+        let element: HTMLElement = this.myf.getElementByEvent(evt);
+        console.log(`click en elemento: ${element.id}`);
+        switch (element.id) {
+            case "boton-todos":
+                this.myf.requestGET("ws/devices?filter=0",this);
+                break;
+            case "boton-lamparas":
+                this.myf.requestGET("ws/devices?filter=1",this);
+                break;
+            case "boton-persianas":
+                this.myf.requestGET("ws/devices?filter=2",this);
+                break;
+            default:
+                let data:object = 
+                    {"id":element.id,
+                    "state":this.view.getSwitchStateById(element.id)};
+                this.myf.requestPOST("devices",data,this);
+        }
     }
 
     handleGETResponse(status:number,response:string):void{
@@ -95,8 +114,9 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
           
           for(let i in data)
           {
-              let sw:HTMLElement = this.myf.getElementById("dev_"+data[i].id);
-              sw.addEventListener("click",this);                
+              //let sw:HTMLElement = this.myf.getElementById("dev_"+data[i].id);
+              //sw.addEventListener("click",this);    
+              this.myf.configClick(`dev_${data[i].id}`,this);               
           }
       }
     }
@@ -115,6 +135,11 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
       this.view = new ViewMainPage(this.myf);
 
       this.myf.requestGET("devices",this);
+
+      this.myf.configClick("boton-todos",this);
+      this.myf.configClick("boton-lamparas",this);
+      this.myf.configClick("boton-persianas",this);
+
     } 
 } 
  

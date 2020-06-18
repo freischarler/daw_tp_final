@@ -54,10 +54,23 @@ class ViewMainPage {
 }
 class Main {
     handleEvent(evt) {
-        let sw = this.myf.getElementByEvent(evt);
-        console.log("click en device:" + sw.id);
-        let data = { "id": sw.id, "state": this.view.getSwitchStateById(sw.id) };
-        this.myf.requestPOST("devices", data, this);
+        let element = this.myf.getElementByEvent(evt);
+        console.log(`click en elemento: ${element.id}`);
+        switch (element.id) {
+            case "boton-todos":
+                this.myf.requestGET("ws/devices?filter=0", this);
+                break;
+            case "boton-lamparas":
+                this.myf.requestGET("ws/devices?filter=1", this);
+                break;
+            case "boton-persianas":
+                this.myf.requestGET("ws/devices?filter=2", this);
+                break;
+            default:
+                let data = { "id": element.id,
+                    "state": this.view.getSwitchStateById(element.id) };
+                this.myf.requestPOST("devices", data, this);
+        }
     }
     handleGETResponse(status, response) {
         if (status == 200) {
@@ -66,8 +79,9 @@ class Main {
             console.log(data);
             this.view.showDevices(data);
             for (let i in data) {
-                let sw = this.myf.getElementById("dev_" + data[i].id);
-                sw.addEventListener("click", this);
+                //let sw:HTMLElement = this.myf.getElementById("dev_"+data[i].id);
+                //sw.addEventListener("click",this);    
+                this.myf.configClick(`dev_${data[i].id}`, this);
             }
         }
     }
@@ -80,6 +94,9 @@ class Main {
         this.myf = new MyFramework();
         this.view = new ViewMainPage(this.myf);
         this.myf.requestGET("devices", this);
+        this.myf.configClick("boton-todos", this);
+        this.myf.configClick("boton-lamparas", this);
+        this.myf.configClick("boton-persianas", this);
     }
 }
 window.onload = () => {

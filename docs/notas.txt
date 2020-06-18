@@ -1,0 +1,21 @@
+MySQL.
+○ Nombre de la imagen.
+○ Nombre contenedor.
+○ Network.
+○ Variables de entorno.
+○ Puertos.
+○ Volumenes.
+● Node App.
+○ Nombre de la imagen.
+○ Nombre contenedor.
+○ Network.
+○ Variables de entorno.
+○ Puertos.
+○ Volumenes.
+● PHPMyAdmin.
+○ Nombre de la imagen.
+○ Nombre contenedor.
+○ Network.
+○ Variables de entorno.
+○ Puertos.
+○ Volumenes.

@@ -19,7 +19,11 @@ class MyFramework{
         return el;
     }
 
-
+    configClick(id: string, listener: EventListenerObject): void {
+        let b: HTMLElement = this.getElementById(id);
+        b.addEventListener("click", listener);
+    }
+    
     getElementByEvent(evt:Event):HTMLElement
     {
         return <HTMLElement>evt.target;
