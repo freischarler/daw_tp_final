@@ -29,10 +29,10 @@ services:
         depends_on:
         - mysql-server
 
-    node-app:
+    nodeapp:
         image: abassi/nodejs-server:10.0-dev
-        hostname: nodejs-container
-        container_name: nodejs-container
+        hostname: nodeapp
+        container_name: nodeapp
         restart: always
         volumes:
         - .:/home/node/app
