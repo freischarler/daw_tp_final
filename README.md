@@ -6,7 +6,7 @@ El proyecto es ...
 # Correr la aplicación
 Para correr la aplicación es necesario ejecutar el siguiente comando:
 ```sh
-command_to_run
+docker-compose up
 ```
 # Contribuir
 Para contribuir realizar un pull request con las sugerencias.
