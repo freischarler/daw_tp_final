@@ -21,6 +21,11 @@ Para correr la aplicación es necesario ejecutar el siguiente comando:
 cd daw_tp_final
 docker-compose up
 ```
+Si por alguna razón no funciona, utilizar el Método 2:
+```sh
+docker-compose up -d mysql-server
+docker-compose up -d phpmyadmin nodeapp
+```
 Por ultimo abrir el navegador y poner la siguiente dirección:
 ```sh
 http://localhost:8000
