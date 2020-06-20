@@ -3,6 +3,11 @@ Autor: Martin Omar Paz - 2020
 
 El proyecto es ...
 
+# Clonar la aplicación
+```sh
+git clone https://github.com/freischarler/daw_tp_final
+```
+
 # Correr la aplicación
 Para correr la aplicación es necesario ejecutar el siguiente comando:
 ```sh
