@@ -34,5 +34,3 @@ http://localhost:8000
 Para contribuir realizar un pull request con las sugerencias.
 # Licencia
 GPL
-
-# fix bugs
